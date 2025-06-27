@@ -2,6 +2,7 @@ export interface Product {
     id: string;
     name: string;
     description: string;
+    ingredients: string;
     price: number;
     category: 'arepas' | 'adiciones' | 'bebidas';
     emoji: string;

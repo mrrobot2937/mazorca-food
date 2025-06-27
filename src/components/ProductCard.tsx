@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Product } from '@/types';
 import { useCart } from '@/contexts/CartContext';
-import { Plus, Minus, ShoppingCart, Heart, Clock, TrendingUp, Sparkles } from 'lucide-react';
+import { Plus, Minus, ShoppingCart, Heart, Clock, TrendingUp, Sparkles, ChefHat } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -101,9 +101,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <h3 className="font-bold text-gray-800 text-2xl mb-3 group-hover:text-orange-600 transition-colors duration-300">
             {product.name}
           </h3>
-          <p className="text-gray-600 text-base leading-relaxed mb-4 line-clamp-2">
+          <p className="text-gray-600 text-base leading-relaxed mb-4">
             {product.description}
           </p>
+          
+          {/* Ingredients Section */}
+          <div className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl p-4 border border-orange-100">
+            <div className="flex items-center gap-2 mb-3">
+              <ChefHat className="w-5 h-5 text-orange-600" />
+              <h4 className="font-semibold text-gray-800 text-lg">Ingredientes</h4>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              {product.ingredients}
+            </p>
+          </div>
         </div>
 
         {/* Price and Actions */}

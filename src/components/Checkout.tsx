@@ -168,7 +168,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
                     required
                     value={customerInfo.name}
                     onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
-                    className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
+                    className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-black placeholder-gray-500 text-sm sm:text-base bg-white"
                     placeholder="Tu nombre completo"
                   />
                 </div>
@@ -183,7 +183,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
                     required
                     value={customerInfo.phone}
                     onChange={(e) => setCustomerInfo({ ...customerInfo, phone: e.target.value })}
-                    className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
+                    className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-black placeholder-gray-500 text-sm sm:text-base bg-white"
                     placeholder="Tu número de teléfono"
                   />
                 </div>
@@ -200,7 +200,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
                     required
                     value={customerInfo.tableNumber}
                     onChange={(e) => setCustomerInfo({ ...customerInfo, tableNumber: e.target.value })}
-                    className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
+                    className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-black placeholder-gray-500 text-sm sm:text-base bg-white"
                     placeholder="Ej: Mesa 5"
                   />
                 </div>
@@ -215,12 +215,11 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
                       required
                       value={customerInfo.address}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, address: e.target.value })}
-                      className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
-                      placeholder="Dirección completa"
                       rows={3}
+                      className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-black placeholder-gray-500 text-sm sm:text-base bg-white resize-none"
+                      placeholder="Dirección completa para entrega"
                     />
                   </div>
-                  
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Instrucciones de Entrega
@@ -228,9 +227,9 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
                     <textarea
                       value={customerInfo.deliveryInstructions}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, deliveryInstructions: e.target.value })}
-                      className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
-                      placeholder="Instrucciones adicionales para la entrega"
                       rows={2}
+                      className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-black placeholder-gray-500 text-sm sm:text-base bg-white resize-none"
+                      placeholder="Instrucciones adicionales (opcional)"
                     />
                   </div>
                 </>
@@ -238,29 +237,30 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
             </div>
 
             {/* Order Summary */}
-            <div className="bg-gray-50 rounded-2xl p-4 sm:p-6">
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 sm:mb-4">Resumen del Pedido</h3>
-              <div className="space-y-2 sm:space-y-3">
+            <div className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl p-4 sm:p-6 border border-orange-100">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Resumen del Pedido</h3>
+              <div className="space-y-3">
                 {state.items.map((item) => (
-                  <div key={item.product.id} className="flex justify-between items-center py-2">
-                    <div className="flex-1">
-                      <div className="font-medium text-gray-800 text-sm sm:text-base">{item.product.name}</div>
-                      <div className="text-xs sm:text-sm text-gray-600">
-                        {item.quantity} x {formatPrice(item.product.price)}
+                  <div key={item.product.id} className="flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{item.product.emoji}</span>
+                      <div>
+                        <p className="font-medium text-gray-800">{item.product.name}</p>
+                        <p className="text-sm text-gray-600">Cantidad: {item.quantity}</p>
                       </div>
                     </div>
-                    <div className="font-semibold text-orange-600 text-base sm:text-lg">
+                    <span className="font-semibold text-gray-800">
                       {formatPrice(item.product.price * item.quantity)}
-                    </div>
-                  </div>
-                ))}
-                <div className="border-t border-gray-200 pt-3 sm:pt-4 mt-3 sm:mt-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-lg sm:text-xl font-semibold text-gray-800">Total</span>
-                    <span className="text-2xl sm:text-3xl font-bold text-orange-600">
-                      {formatPrice(total)}
                     </span>
                   </div>
+                ))}
+              </div>
+              <div className="border-t border-orange-200 mt-4 pt-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-lg font-semibold text-gray-800">Total</span>
+                  <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent">
+                    {formatPrice(total)}
+                  </span>
                 </div>
               </div>
             </div>
@@ -268,24 +268,24 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
         </div>
 
         {/* Footer - Fixed */}
-        <div className="p-4 sm:p-6 border-t border-gray-200 bg-gray-50 flex-shrink-0">
+        <div className="p-4 sm:p-6 border-t border-gray-200 bg-white flex-shrink-0">
           <button
             type="submit"
-            disabled={!isFormValid() || isSubmitting}
-            className={`w-full py-3 sm:py-4 px-6 rounded-2xl font-bold text-white transition-all duration-300 ${
-              isFormValid() && !isSubmitting
-                ? 'bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 shadow-lg hover:shadow-xl transform hover:scale-105'
-                : 'bg-gray-400 cursor-not-allowed'
-            }`}
             onClick={handleSubmit}
+            disabled={!isFormValid() || isSubmitting}
+            className={`w-full py-4 px-6 rounded-2xl font-bold text-lg transition-all duration-300 ${
+              isFormValid() && !isSubmitting
+                ? 'bg-gradient-to-r from-orange-500 to-yellow-500 text-white hover:from-orange-600 hover:to-yellow-600 shadow-xl hover:shadow-2xl transform hover:scale-105'
+                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+            }`}
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center gap-2">
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                <span>Procesando...</span>
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                Procesando...
               </div>
             ) : (
-              <span className="text-sm sm:text-base">Confirmar Pedido - {formatPrice(total)}</span>
+              `Confirmar Pedido - ${formatPrice(total)}`
             )}
           </button>
         </div>
