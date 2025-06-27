@@ -103,61 +103,61 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white p-6">
+      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl h-[90vh] flex flex-col">
+        {/* Header - Fixed */}
+        <div className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white p-4 sm:p-6 flex-shrink-0">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold">Completar Pedido</h2>
+            <h2 className="text-xl sm:text-2xl font-bold">Completar Pedido</h2>
             <button
               onClick={onClose}
               className="text-white hover:text-gray-200 transition-colors p-2 hover:bg-white/20 rounded-full"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
         </div>
 
-        {/* Content */}
-        <div className="p-6 overflow-y-auto max-h-[70vh]">
-          <form onSubmit={handleSubmit} className="space-y-8">
+        {/* Content - Scrollable */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
             {/* Order Type Selection */}
             <div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-6">Tipo de Pedido</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4 sm:mb-6">Tipo de Pedido</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <button
                   type="button"
                   onClick={() => setOrderType('mesa')}
-                  className={`p-6 rounded-2xl border-2 transition-all ${
+                  className={`p-4 sm:p-6 rounded-2xl border-2 transition-all ${
                     orderType === 'mesa'
                       ? 'border-orange-500 bg-orange-50 text-orange-700'
                       : 'border-gray-200 bg-white text-gray-700 hover:border-orange-300'
                   }`}
                 >
-                  <Clock className="w-8 h-8 mx-auto mb-3" />
-                  <div className="font-semibold text-lg">Para Mesa</div>
-                  <div className="text-sm opacity-75">Comer en el restaurante</div>
+                  <Clock className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3" />
+                  <div className="font-semibold text-base sm:text-lg">Para Mesa</div>
+                  <div className="text-xs sm:text-sm opacity-75">Comer en el restaurante</div>
                 </button>
                 <button
                   type="button"
                   onClick={() => setOrderType('domicilio')}
-                  className={`p-6 rounded-2xl border-2 transition-all ${
+                  className={`p-4 sm:p-6 rounded-2xl border-2 transition-all ${
                     orderType === 'domicilio'
                       ? 'border-orange-500 bg-orange-50 text-orange-700'
                       : 'border-gray-200 bg-white text-gray-700 hover:border-orange-300'
                   }`}
                 >
-                  <MapPin className="w-8 h-8 mx-auto mb-3" />
-                  <div className="font-semibold text-lg">Domicilio</div>
-                  <div className="text-sm opacity-75">Envío a tu dirección</div>
+                  <MapPin className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3" />
+                  <div className="font-semibold text-base sm:text-lg">Domicilio</div>
+                  <div className="text-xs sm:text-sm opacity-75">Envío a tu dirección</div>
                 </button>
               </div>
             </div>
 
             {/* Customer Information */}
-            <div className="space-y-6">
-              <h3 className="text-xl font-semibold text-gray-800">Información Personal</h3>
+            <div className="space-y-4 sm:space-y-6">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800">Información Personal</h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     <User className="w-4 h-4 inline mr-1" />
@@ -168,7 +168,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
                     required
                     value={customerInfo.name}
                     onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
-                    className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="Tu nombre completo"
                   />
                 </div>
@@ -183,7 +183,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
                     required
                     value={customerInfo.phone}
                     onChange={(e) => setCustomerInfo({ ...customerInfo, phone: e.target.value })}
-                    className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="Tu número de teléfono"
                   />
                 </div>
@@ -200,7 +200,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
                     required
                     value={customerInfo.tableNumber}
                     onChange={(e) => setCustomerInfo({ ...customerInfo, tableNumber: e.target.value })}
-                    className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="Ej: Mesa 5"
                   />
                 </div>
@@ -215,7 +215,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
                       required
                       value={customerInfo.address}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, address: e.target.value })}
-                      className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Dirección completa"
                       rows={3}
                     />
@@ -228,7 +228,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
                     <textarea
                       value={customerInfo.deliveryInstructions}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, deliveryInstructions: e.target.value })}
-                      className="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      className="w-full p-3 sm:p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Instrucciones adicionales para la entrega"
                       rows={2}
                     />
@@ -238,53 +238,56 @@ export const Checkout: React.FC<CheckoutProps> = ({ isOpen, onClose, onOrderComp
             </div>
 
             {/* Order Summary */}
-            <div className="bg-gray-50 rounded-2xl p-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Resumen del Pedido</h3>
-              <div className="space-y-3">
+            <div className="bg-gray-50 rounded-2xl p-4 sm:p-6">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3 sm:mb-4">Resumen del Pedido</h3>
+              <div className="space-y-2 sm:space-y-3">
                 {state.items.map((item) => (
                   <div key={item.product.id} className="flex justify-between items-center py-2">
                     <div className="flex-1">
-                      <div className="font-medium text-gray-800">{item.product.name}</div>
-                      <div className="text-sm text-gray-600">
+                      <div className="font-medium text-gray-800 text-sm sm:text-base">{item.product.name}</div>
+                      <div className="text-xs sm:text-sm text-gray-600">
                         {item.quantity} x {formatPrice(item.product.price)}
                       </div>
                     </div>
-                    <div className="font-semibold text-orange-600 text-lg">
+                    <div className="font-semibold text-orange-600 text-base sm:text-lg">
                       {formatPrice(item.product.price * item.quantity)}
                     </div>
                   </div>
                 ))}
-                <div className="border-t border-gray-200 pt-4 mt-4">
+                <div className="border-t border-gray-200 pt-3 sm:pt-4 mt-3 sm:mt-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-xl font-semibold text-gray-800">Total</span>
-                    <span className="text-3xl font-bold text-orange-600">
+                    <span className="text-lg sm:text-xl font-semibold text-gray-800">Total</span>
+                    <span className="text-2xl sm:text-3xl font-bold text-orange-600">
                       {formatPrice(total)}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={!isFormValid() || isSubmitting}
-              className={`w-full py-5 px-6 rounded-2xl font-semibold text-lg transition-all duration-200 ${
-                isFormValid() && !isSubmitting
-                  ? 'bg-gradient-to-r from-orange-500 to-yellow-500 text-white hover:from-orange-600 hover:to-yellow-600 transform hover:scale-105 shadow-lg hover:shadow-xl'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              }`}
-            >
-              {isSubmitting ? (
-                <div className="flex items-center justify-center gap-3">
-                  <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Procesando Pedido...
-                </div>
-              ) : (
-                `Confirmar Pedido - ${formatPrice(total)}`
-              )}
-            </button>
           </form>
+        </div>
+
+        {/* Footer - Fixed */}
+        <div className="p-4 sm:p-6 border-t border-gray-200 bg-gray-50 flex-shrink-0">
+          <button
+            type="submit"
+            disabled={!isFormValid() || isSubmitting}
+            className={`w-full py-3 sm:py-4 px-6 rounded-2xl font-bold text-white transition-all duration-300 ${
+              isFormValid() && !isSubmitting
+                ? 'bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 shadow-lg hover:shadow-xl transform hover:scale-105'
+                : 'bg-gray-400 cursor-not-allowed'
+            }`}
+            onClick={handleSubmit}
+          >
+            {isSubmitting ? (
+              <div className="flex items-center justify-center gap-2">
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>Procesando...</span>
+              </div>
+            ) : (
+              <span className="text-sm sm:text-base">Confirmar Pedido - {formatPrice(total)}</span>
+            )}
+          </button>
         </div>
       </div>
     </div>
